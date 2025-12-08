@@ -1,0 +1,6 @@
+- name : This is main file for patching project
+  hosts : localhost
+  roles :
+    - pre-patching
+    - patching
+    - post-patching
