@@ -7,6 +7,7 @@ patching is process of applying
 to fix 
 
 - bugs 
+- cyber-attaks
 - enhance functionality
 - improve performance, or address security vulnerabilities.
 

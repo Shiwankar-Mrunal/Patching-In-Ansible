@@ -1,8 +1,86 @@
+# --- 
+# - import_tasks : Create_dirctory.yml
+
+
+
+# Step : 1 : Create directory
+
+# - name : Create  Directory
+#   ansible.builtin.file:
+#         path : /PATCHING-IN-ANSIBLE/temp_dir
+#         state : directory
+        
+# - name : Crete file
+#   ansible.builtin.file:
+#         path : "{{pre_patch_var}}/pre-patch.log"
+#         state : touch
+
+# Step : 2 : Verify resources
+
+# - name : Verify free storage space for patching 
+#   ansible.builtin.command:
+#     cmd : df -h 
+#   register : storage_variable
  
-- name : Cretate  Directory
-  ansible.builtin.file:
-        path : /PATCHING-IN-ANSIBLE/temp_dir
-        state : directory
+# - name : To store storage info in file
+#   ansible.builtin.copy:
+#     content : "{{storage_variable.stdout}}"
+#     dest : "{{pre_patch_var}}//pre-patch1.log"
+    
+ 
+# - name: Display IP Address
+#   debug:
+#     var: ansible_default_ipv4.address
+
+# Step : 3 Display all running services
+
+# - name: Display all running services
+#   ansible.builtin.command:
+#     cmd : systemctl list-units --type=service --state=running
+#   register : my_var
+
+# - name : To store running service in file
+#   ansible.builtin.copy:
+#     content : "{{my_var.stdout}}"
+#     dest : "{{pre_patch_var}}//pre-patch2.log"
+
+# # Step 4 : Gather Evidences
+
+# - name: List upgradable packages
+#   ansible.builtin.shell:
+#       cmd : apt list --upgradable 
+#   register: apt_updates
+#   changed_when: false
+
+# # - name : Show available updates
+# #   ansible.builtin.debug:
+# #     msg: "{{ apt_updates}}"
+
+# - name : To store upgrade package in file
+#   ansible.builtin.copy:
+#     content : "{{apt_updates.stdout}}"
+#     dest : "{{pre_patch_var}}//pre-patch3.log"
+
+- name: Create directory tasks
+  import_tasks: Create_directory.yml
+
+- name : Verify resources
+  import_tasks : Verify_resources.yml
+
+- name: Gather Active Facts
+  import_tasks : Gather_active_Service.yml
+
+- name : Gather Evidences
+  import_tasks : Gather_Evidences.yml
+ 
+
+
+
+
+
+
+
+
 
 
 

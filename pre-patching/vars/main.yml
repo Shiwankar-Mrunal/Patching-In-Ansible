@@ -1,2 +1,3 @@
 ---
 # vars file for pre-patching
+pre_patch_var : "/PATCHING-IN-ANSIBLE/temp_dir"

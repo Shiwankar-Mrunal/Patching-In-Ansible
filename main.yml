@@ -1,5 +1,7 @@
 - name : This is main file for patching project
   hosts : localhost
+  become : yes
+  gather_facts: yes
   roles :
     - pre-patching
     - patching
