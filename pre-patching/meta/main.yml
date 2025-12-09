@@ -1,3 +1,5 @@
+# This is inbuilt meta(main.yml) inside pre-patching role
+
 galaxy_info:
   author: your name
   description: your role description
