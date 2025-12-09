@@ -1,0 +1,22 @@
+# Step : 2 : Verify resources
+
+- name : Code with error handling
+  block : 
+    - name : Verify free storage space for patching 
+      ansible.builtin.command:
+        cmd : df -h 
+      register : storage_variable
+ 
+    - name : To store storage info in file
+      ansible.builtin.copy:
+        content : "{{storage_variable.stdout}}"
+        dest : "{{pre_patch_var}}//pre-patch1.log"
+
+    - name: Display IP Address
+      debug:
+        var: ansible_default_ipv4.address
+
+  rescue:
+      - name: Print resue block
+        debug:
+          msg : "Failed to verify resources"

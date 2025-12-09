@@ -1,0 +1,16 @@
+- name : Code with error handling
+  block : 
+    - name: Display all running services
+      ansible.builtin.command:
+        cmd : systemctl list-units --type=service --state=running
+      register : my_var
+
+    - name : To store running service in file
+      ansible.builtin.copy:
+        content : "{{my_var.stdout}}"
+        dest : "{{pre_patch_var}}//pre-patch2.log"
+
+  rescue : 
+    - name : Print resue block
+      debug : 
+        msg : "Failed to display running services"

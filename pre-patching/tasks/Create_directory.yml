@@ -1,0 +1,12 @@
+- name : Code with error handling
+  block : 
+    - name : Create  Directory
+      ansible.builtin.file:
+        path : /PATCHING-IN-ANSIBLE/temp_dir
+        state : directory
+
+  rescue:
+      - name: Print resue block
+        debug:
+          msg : "Failed to create folder"
+
