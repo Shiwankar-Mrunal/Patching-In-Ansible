@@ -1,2 +1,8 @@
----
-# tasks file for post-patching
+- name : service re-validation
+  import_tasks: Service_revalidation.yml
+
+- name : Resource_Helth_Check
+  import_tasks : Resources_health_check.yml
+
+- name : Report_Generation
+  import_tasks : Report_generation.yml

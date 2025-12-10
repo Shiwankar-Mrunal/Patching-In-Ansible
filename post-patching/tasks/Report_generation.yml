@@ -1,0 +1,8 @@
+- name: Report generation of stop service
+  ansible.builtin.command:
+    cmd : systemctl list-units --type=service --state=stopped
+  register : stopped_service
+
+- name : To store running service in file
+  ansible.builtin.debug:
+     msg : stopped_service

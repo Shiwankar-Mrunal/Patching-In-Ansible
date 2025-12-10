@@ -1,2 +1,11 @@
 ---
 # vars file for patching
+
+services_name : 
+        - "cron"
+        - "dbus"
+        - "docker"
+        - "nginx"
+
+
+patch_var : "/PATCHING-IN-ANSIBLE/temp_dir"

@@ -1,0 +1,13 @@
+ - name : Code with error handling
+   block : 
+    - name : Restart Services
+      ansible.builtin.service:
+        name : "{{ item }}"
+        state: restarted
+        register: "stop_service_variable"
+      loop : "{{services_name}}"
+
+   rescue:
+      - name: Restart service forcefully
+        debug:
+          msg : "Failed to restart services"

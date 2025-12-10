@@ -1,0 +1,11 @@
+
+- name: Check if the service is running
+  uri:
+    url: http://localhost:80
+    status_code: 200
+  register: health_check_result
+
+- name: Display health check result
+  debug:
+    msg: "Health check passed!"
+  when: health_check_result.status == 200

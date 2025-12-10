@@ -1,2 +1,11 @@
----
-# tasks file for patching
+ - name: Stop Service for patching
+   import_tasks: Stop_Service.yml
+
+ - name: Snapshot for patching
+   import_tasks: Patch_Installation.yml
+
+# - name: patching Confirmation
+#   import_tasks: Patch_Installation.yml
+
+ - name: Restart Services
+   import_tasks: Restart_Services.yml

@@ -17,6 +17,6 @@
         var: ansible_default_ipv4.address
 
   rescue:
-      - name: Print resue block
+      - name: Print rescue block
         debug:
           msg : "Failed to verify resources"
