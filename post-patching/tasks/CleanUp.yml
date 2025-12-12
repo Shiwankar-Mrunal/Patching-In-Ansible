@@ -4,10 +4,7 @@
     ansible.builtin.archive:
       path: "{{Comman_path2}}"
       dest: "{{Comman_path2}}.patch.zip"            
-      format: zip
-      owner: root
-      group: root
-      mode: '644'
+  
 
 
   - name : Delete file in folder after converting folder into zip

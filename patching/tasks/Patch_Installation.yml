@@ -14,12 +14,6 @@
         state: latest
       when: ansible_facts['os_family'] == "RedHat"
 
-    - name: Reboot machine
-      ansible.builtin.reboot:
-        reboot_timeout: 1
-      when : reboot_required.stat.exists | default(false)
-
-
   rescue:
     - name: Not able to updated packages
       debug:
@@ -30,5 +24,88 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#  - name: Reboot machine
+#       ansible.builtin.reboot:
+#         reboot_timeout: 1
+#       when : reboot_required.stat.exists | default(false)
 
 

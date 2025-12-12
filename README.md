@@ -60,3 +60,14 @@ A patch is typically a small piece of code or data designed to update an existin
 # Future Scope 
 
 - You can use ansible tower
+
+
+
+<!-- |     Variable      |    Variable type       |   Description   |    Supported os ubuntu/    |  default     |
+|                   |                        |                  |    Redhat/if both Linux     |            |
+|----------------------------------------------------------------------------------------------------------|
+|   Comman_path     |   Simple Variable     |   User to store path |    supported by both |        -       |   
+|
+|
+|
+| -->
