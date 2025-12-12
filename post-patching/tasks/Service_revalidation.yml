@@ -1,0 +1,26 @@
+- name: Service Revalidation 
+  block:
+
+
+  - name: create patch directory
+    include_role:
+      name: pre-patching
+      tasks_from: Create_directory.yml
+    vars:
+      Comman_path: "{{Comman_path2}}"
+      Stage_dir: "{{Stage_dir2}}"
+        
+  - name: Add service Revalidation
+    include_role: 
+      name: pre-patching
+      tasks_from: Gather_active_Service.yml
+  vars:
+    Comman_path: "{{Comman_path2}}"
+    Stage_dir: "{{Stage_dir2}}"
+
+  rescue:
+      - name: Print resue block
+        debug:
+          msg : "Failed to service Revalidation"
+    
+    

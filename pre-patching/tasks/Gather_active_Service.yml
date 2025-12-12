@@ -2,13 +2,15 @@
   block : 
     - name: Display all running services
       ansible.builtin.command:
-        cmd : systemctl list-units --type=service --state=running
+        cmd : systemctl list-units --type=service
       register : my_var
 
     - name : To store running service in file
       ansible.builtin.copy:
         content : "{{my_var.stdout}}"
-        dest : "{{pre_patch_var}}//pre-patch2.log"
+        dest : "{{Comman_path}}/{{Stage_dir}}/gather_active_services.log"
+
+        
 
   rescue : 
     - name : Print resue block

@@ -1,2 +1,12 @@
 ---
 # vars file for post-patching
+
+# post_patch_var : "/PATCHING-IN-ANSIBLE/post_patch"
+
+Notification : 
+    host_name: smtp.gmail.com
+    port_no: 587
+    user: username@gmail.com
+    password: mysecret
+    detail: John Smith <john.smith@example.com>
+    sub: Ansible-report

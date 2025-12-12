@@ -1,5 +1,5 @@
 # What is patching 
-patching is process of applying 
+Patching is process of applying 
 - updates
 - modifications to software 
 - update operating systems or application 
@@ -24,6 +24,50 @@ A patch is typically a small piece of code or data designed to update an existin
 -  Feature Updates  : Add or enhance functionality
 -  Service Packs : Collections of patches and updates bundled together.
 
+## Overview :  
 
-# This is a test push for dev commit
+```The  project is to understanding patching in real - world using ansible```
 
+
+# Pre Patch steps
+```Pre-patching in Ansible refers to the process of preparing a system for patching by performing necessary checks and configurations before applying updates.```
+
+- Create Directory
+- Verify resurces
+- Gather Active Services
+- Gather Evidences
+
+# Patch Steps
+
+```process of applying updates or fixes, known as patches, to software, operating systems, or hardware.```
+
+- Stop service
+- Install Patch
+- Patch Confirmation
+- Restart Services
+
+# Post Patch Steps
+
+```After update everything verify update and generate final updated reports```
+
+- Service Revalidation
+- Resorces health check
+- Report Generation
+- Notification
+- Clean UP
+
+
+# Future Scope 
+
+- You can use ansible tower
+
+
+
+<!-- |     Variable      |    Variable type       |   Description   |    Supported os ubuntu/    |  default     |
+|                   |                        |                  |    Redhat/if both Linux     |            |
+|----------------------------------------------------------------------------------------------------------|
+|   Comman_path     |   Simple Variable     |   User to store path |    supported by both |        -       |   
+|
+|
+|
+| -->

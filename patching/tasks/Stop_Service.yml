@@ -1,7 +1,7 @@
  - name : Code with error handling
    block : 
       - name : Stop Services
-        ansible.builtin.service:
+        ansible.builtin.systemd:
           name : "{{ item }}"
           state: stopped
         loop: "{{services_name}}"
@@ -13,15 +13,6 @@
 
 
 
-
-
-
-
-
-
-# register : stop_service_variable
-          # content : "{{stop_service_variable.stdout}}"
-          # dest : "{{patch_var}}//stop_service.log"
 
 
 

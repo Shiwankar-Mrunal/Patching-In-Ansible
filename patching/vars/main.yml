@@ -8,4 +8,4 @@ services_name :
         - "nginx"
 
 
-patch_var : "/PATCHING-IN-ANSIBLE/temp_dir"
+# patch_var : "/PATCHING-IN-ANSIBLE/Patch"
