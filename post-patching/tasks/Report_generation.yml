@@ -1,8 +1,52 @@
-- name: Report generation of stop service
-  ansible.builtin.command:
-    cmd : systemctl list-units --type=service --state=stopped
-  register : stopped_service
+- name : Code with error handling
+  block : 
+    - name : First file report generation
+      slurp: 
+        src : "{{Comman_path2}}/{{Stage_dir2}}/gather_active_services.log"
+      register : Post_Report
 
-- name : To store running service in file
-  ansible.builtin.debug:
-     msg : stopped_service
+
+    - name : To display running_services_info 
+      copy:
+        content : "{{Post_Report['content'] | b64decode}}"
+        dest : "{{Comman_path2}}/{{Stage_dir2}}/Report_postpatch.txt"
+
+
+    - name : Second file report generation
+      slurp : 
+        src : "{{Comman_path2}}/{{get_pre_patch_path}}/gather_active_services.log"
+      register : Pre_Report
+
+    - name : To display second file running_services_info
+      copy : 
+        content : "{{Pre_Report['content'] | b64decode}}"
+        dest : "{{Comman_path2}}/{{Stage_dir2}}/Report_prepatch.txt"
+
+    - name: Difference difference two file
+      ansible.builtin.command:
+        cmd: diff "{{Comman_path2}}/{{Stage_dir2}}/Report_postpatch.txt" "{{Comman_path2}}/{{Stage_dir2}}/Report_prepatch.txt"
+      register : store_diff
+      changed_when: false
+      failed_when: store_diff.rc not in [0, 1]
+
+  
+    - name : Store Final report 
+      copy : 
+        content : store_diff.stdout
+        dest : "{{Comman_path2}}/{{Stage_dir2}}/Final_Report.txt"
+
+  rescue:
+      - name: Print resue block
+        debug:
+          msg : "Failed to create final report"
+
+
+
+
+
+
+
+
+
+
+  

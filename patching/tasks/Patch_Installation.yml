@@ -1,8 +1,32 @@
-- name: Update all packages
-  ansible.builtin.apt:
-   name: "{{ item }}"
-   state: latest
-  loop : "{{services_name}}"
+- name: Code to display Error handling
+  block : 
+
+    - name: Update all packages
+      ansible.builtin.apt:
+        name: "*"
+        state: latest
+        install_recommends : true
+      when : ansible_facts['os_family'] == "Debian"
+
+    - name: Update all packages
+      ansible.builtin.dnf:
+        name: "*"
+        state: latest
+      when: ansible_facts['os_family'] == "RedHat"
+
+    - name: Reboot machine
+      ansible.builtin.reboot:
+        reboot_timeout: 1
+      when : reboot_required.stat.exists | default(false)
+
+
+  rescue:
+    - name: Not able to updated packages
+      debug:
+        msg : "Failed to updated packages" 
+
+
+
 
 
 

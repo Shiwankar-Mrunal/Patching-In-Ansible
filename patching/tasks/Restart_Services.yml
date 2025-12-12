@@ -1,10 +1,11 @@
  - name : Code with error handling
    block : 
     - name : Restart Services
-      ansible.builtin.service:
+      ansible.builtin.systemd:
         name : "{{ item }}"
         state: restarted
-        register: "stop_service_variable"
+      ignore_errors: true
+      # register: "stop_service_variable"
       loop : "{{services_name}}"
 
    rescue:

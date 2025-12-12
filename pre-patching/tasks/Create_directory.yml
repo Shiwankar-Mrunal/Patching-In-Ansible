@@ -2,7 +2,7 @@
   block : 
     - name : Create  Directory
       ansible.builtin.file:
-        path : /PATCHING-IN-ANSIBLE/temp_dir
+        path : "{{Comman_path}}/{{Stage_dir}}"
         state : directory
 
   rescue:
@@ -10,3 +10,4 @@
         debug:
           msg : "Failed to create folder"
 
+  

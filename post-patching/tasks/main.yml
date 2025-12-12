@@ -6,3 +6,6 @@
 
 - name : Report_Generation
   import_tasks : Report_generation.yml
+
+- name : CleanUp
+  import_tasks : CleanUp.yml
