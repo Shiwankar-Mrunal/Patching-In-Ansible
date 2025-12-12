@@ -1,5 +1,5 @@
 # What is patching 
-patching is process of applying 
+Patching is process of applying 
 - updates
 - modifications to software 
 - update operating systems or application 
@@ -29,7 +29,7 @@ A patch is typically a small piece of code or data designed to update an existin
 ```The  project is to understanding patching in real - world using ansible```
 
 
-# Pre Pathch steps
+# Pre Patch steps
 ```Pre-patching in Ansible refers to the process of preparing a system for patching by performing necessary checks and configurations before applying updates.```
 
 - Create Directory
@@ -43,10 +43,10 @@ A patch is typically a small piece of code or data designed to update an existin
 
 - Stop service
 - Install Patch
-- Patch Conformation
+- Patch Confirmation
 - Restart Services
 
-## post Pathch Steps
+# Post Patch Steps
 
 ```After update everything verify update and generate final updated reports```
 
