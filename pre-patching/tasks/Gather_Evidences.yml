@@ -1,19 +1,9 @@
-# Step 4 : Gather Evidences
-- name: Code to display Error handling
-  block : 
-
-    - name: List upgradable packages
-      ansible.builtin.shell:
-        cmd : apt list --upgradable 
-      register: apt_updates
-      changed_when: false
-
-    - name : To store upgrade package in file
-      ansible.builtin.copy:
-        content : "{{apt_updates.stdout}}"
-        dest : "{{pre_patch_var}}//pre-patch3.log"
-
-  rescue : 
-    - name : print rescue block 
-      debug : 
-        msg : "Failed to gather Facts"
+- name : Convert folder into zip
+  ansible.builtin.archive:
+    path: "{{Comman_path}}/{{Stage_dir}}"
+    dest: "{{Comman_path}}/{{Stage_dir}}.prepatch.zip"            
+    format: zip
+    owner: root
+    group: root
+    mode: '644'
+    

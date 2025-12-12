@@ -10,13 +10,81 @@
     - name : To store storage info in file
       ansible.builtin.copy:
         content : "{{storage_variable.stdout}}"
-        dest : "{{pre_patch_var}}//pre-patch1.log"
+        dest : "{{Comman_path}}/{{Stage_dir}}/storage.log"
 
-    - name: Display IP Address
-      debug:
-        var: ansible_default_ipv4.address
+
+    - name : display Ip Address
+      shell: "ip addr show "
+      register: ip_address_variable
+
+    - name : To store memory info in file
+      ansible.builtin.copy:
+        content : "{{ip_address_variable.stdout}}"
+        dest : "{{Comman_path}}/{{Stage_dir}}/ip_address.log"
+    
+
+    - name : Display memory/CPU used by services
+      command : 
+        cmd : top -bn1
+      register: memory_variable
+
+    - name : To store memory info in file
+      ansible.builtin.copy:
+        content : "{{memory_variable.stdout}}"
+        dest : "{{Comman_path}}/{{Stage_dir}}/memory_storage.log"
+
+    - name : To get uptime
+      command : 
+        cmd : uptime
+      register: uptime_variable
+
+    - name : To display uptime 
+      ansible.builtin.copy:
+        content : "{{uptime_variable.stdout}}"
+        dest : "{{Comman_path}}/{{Stage_dir}}/uptime.log"
+
+    - name : To get os-release
+      command : 
+        cmd : cat /etc/os-release
+      register: os_var
+
+    - name : To display uptime 
+      ansible.builtin.copy:
+        content : "{{os_var.stdout}}"
+        dest : "{{Comman_path}}/{{Stage_dir}}/os_release.log"
+
+    - name : To get memory_info
+      command : 
+        cmd : free -h
+      register: memory_var
+
+    - name : To display uptime 
+      ansible.builtin.copy:
+        content : "{{memory_var.stdout}}"
+        dest : "{{Comman_path}}/{{Stage_dir}}/memory_info.log"
+
+    - name : To get disk_partition_info
+      command : 
+        cmd : lsblk
+      register: disk_partition_var
+
+    - name : To display uptime 
+      ansible.builtin.copy:
+        content : "{{disk_partition_var.stdout}}"
+        dest : "{{Comman_path}}/{{Stage_dir}}/disk_partition.log"
+
+    - name : To get running_services_info
+      command : 
+        cmd : systemctl --type=service --state=running
+      register: running_services_var
+
+    - name : To display running_services_info 
+      ansible.builtin.copy:
+        content : "{{running_services_var.stdout}}"
+        dest : "{{Comman_path}}/{{Stage_dir}}/Running_services.log"
+  
 
   rescue:
-      - name: Print resue block
+      - name: Print rescue block
         debug:
           msg : "Failed to verify resources"

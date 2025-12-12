@@ -1,0 +1,75 @@
+ - name : Code with error handling
+   block : 
+      - name : Stop Services
+        ansible.builtin.systemd:
+          name : "{{ item }}"
+          state: stopped
+        loop: "{{services_name}}"
+ 
+   rescue:
+        - name: stop srevice forcefully
+          debug:
+            msg : "Failed to stop services"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# - name : Stop Services
+      #   ansible.builtin.service:
+      #     name : "{{services_name[1]}}"
+      #     state : stopped
