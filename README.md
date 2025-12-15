@@ -61,13 +61,13 @@ A patch is typically a small piece of code or data designed to update an existin
 
 - You can use ansible tower
 
+# variable list
 
 
-<!-- |     Variable      |    Variable type       |   Description   |    Supported os ubuntu/    |  default     |
-|                   |                        |                  |    Redhat/if both Linux     |            |
-|----------------------------------------------------------------------------------------------------------|
-|   Comman_path     |   Simple Variable     |   User to store path |    supported by both |        -       |   
-|
-|
-|
-| -->
+|     Variable      |    Variable type   |   Description                        |    Supported os    |     default     |                                                                       
+|-------------------|--------------------|--------------------------------------|--------------------|-------------------|
+|   Comman_path     |      String        |  Path for folder creation            |        both        |        -          |   
+|                   |                    |                                      |                    |                   |
+|   Comman_path1    |      string        |  Path for creating patch folder      |        both        |        -          |
+|                   |                    |                                      |                    |                   |
+|   Comman_path2    |      String        |  Path for creating post patch folder |        both        |        -          |  
