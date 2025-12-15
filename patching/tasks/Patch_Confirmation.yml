@@ -20,6 +20,8 @@
         content : "{{store_update.stdout}}"
         dest : "{{Comman_path1}}/{{patch_Stage_dir}}/updated_package.log"
 
+# for redhat
+
   rescue:
         - name: Not able to display updated packages
           debug:
