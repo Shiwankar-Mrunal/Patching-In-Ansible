@@ -8,17 +8,20 @@
         install_recommends : true
       when : ansible_facts['os_family'] == "Debian"
 
+    - name : For security patches
+      ansible.builtin.command :
+        cmd: apt-get upgrade -y --with-new-pkgs
+            -o Dir::Etc::sourcelist="sources.list.d/security.list"
+            -o Dir::Etc::sourceparts="-" 
+            -o APT::Get::List-Cleanup="0"
+
+
     - name: Update all packages
       ansible.builtin.dnf:
         name: "*"
         state: latest
+        security: yes
       when: ansible_facts['os_family'] == "RedHat"
-
-    - name: Reboot machine
-      ansible.builtin.reboot:
-        reboot_timeout: 1
-      when : reboot_required.stat.exists | default(false)
-
 
   rescue:
     - name: Not able to updated packages
@@ -30,5 +33,88 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#  - name: Reboot machine
+#       ansible.builtin.reboot:
+#         reboot_timeout: 1
+#       when : reboot_required.stat.exists | default(false)
 
 
