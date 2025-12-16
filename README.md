@@ -57,17 +57,22 @@ A patch is typically a small piece of code or data designed to update an existin
 - Clean UP
 
 
+# variable list
+
+
+|     Variable      |    Variable type   |   Description                            |    Supported os    |     default     |                                                                       
+|-------------------|--------------------|------------------------------------------|--------------------|-------------------|
+|   Universal_path  |      String        |  Variable for folder creation            |        both        |        -          |   
+|                   |                    |                                          |                    |                   |
+|   Stage_dir       |      string        |  Variable for creating pre-patch folder  |        both        |        -          |
+|                   |                    |                                          |                    |                   |
+|  patch_Stage_dir  |      String        |  Variable for creating patch folder      |        both        |        -          | 
+|                   |                    |                                          |                    |                   |
+|  Stage_dir2       |      String        |  Variable for creating post-Patch for    |        both        |        -          |   
+
+
+
 # Future Scope 
 
 - You can use ansible tower
 
-# variable list
-
-
-|     Variable      |    Variable type   |   Description                        |    Supported os    |     default     |                                                                       
-|-------------------|--------------------|--------------------------------------|--------------------|-------------------|
-|   Comman_path     |      String        |  Path for folder creation            |        both        |        -          |   
-|                   |                    |                                      |                    |                   |
-|   Comman_path1    |      string        |  Path for creating patch folder      |        both        |        -          |
-|                   |                    |                                      |                    |                   |
-|   Comman_path2    |      String        |  Path for creating post patch folder |        both        |        -          |  
