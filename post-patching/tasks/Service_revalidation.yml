@@ -7,7 +7,6 @@
       name: pre-patching
       tasks_from: Create_directory.yml
     vars:
-      Comman_path: "{{Comman_path2}}"
       Stage_dir: "{{Stage_dir2}}"
         
   - name: Add service Revalidation
@@ -15,7 +14,7 @@
       name: pre-patching
       tasks_from: Gather_active_Service.yml
   vars:
-    Comman_path: "{{Comman_path2}}"
+    Comman_path: "{{Comman_path}}"
     Stage_dir: "{{Stage_dir2}}"
 
   rescue:

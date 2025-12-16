@@ -6,6 +6,3 @@ services_name :
         - "dbus"
         - "docker"
         - "nginx"
-
-
-# patch_var : "/PATCHING-IN-ANSIBLE/Patch"
