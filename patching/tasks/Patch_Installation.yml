@@ -1,10 +1,28 @@
-- name: Update all packages
-  ansible.builtin.apt:
-   name: "{{ item }}"
-   state: latest
-  loop : "{{services_name}}"
+- name: Code to display Error handling
+  block : 
 
+    - name: Update all packages
+      ansible.builtin.apt:
+        name: "*"
+        state: latest
+        install_recommends : true
+      when : ansible_facts['os_family'] == "Debian"
 
+    - name : For security patches
+      ansible.builtin.command :
+        cmd: apt-get upgrade -y --with-new-pkgs
+            -o Dir::Etc::sourcelist="sources.list.d/security.list"
+            -o Dir::Etc::sourceparts="-" 
+            -o APT::Get::List-Cleanup="0"
 
-
-
+    - name: Update all packages
+      ansible.builtin.dnf:
+        name: "*"
+        state: latest
+        security: yes
+      when: ansible_facts['os_family'] == "RedHat"
+      
+  rescue:
+    - name: Not able to updated packages
+      debug:
+        msg : "Failed to updated packages" 

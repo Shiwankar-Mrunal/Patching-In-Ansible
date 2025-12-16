@@ -1,0 +1,24 @@
+- name : Code with error handling
+  block : 
+  - name : Convert folder into zip
+    ansible.builtin.archive:
+      path: "{{Comman_path}}"
+      dest: "{{Comman_path}}patch.zip"  
+      format: zip
+      owner: root
+      group: root
+      mode: '644'          
+  
+
+
+  - name : Delete file in folder after converting folder into zip
+    ansible.builtin.file: 
+      state: absent 
+      path: "{{Comman_path}}"
+
+  rescue:
+      - name: Print resue block
+        debug:
+          msg : "Failed to CleanUp"
+
+   

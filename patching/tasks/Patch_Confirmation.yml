@@ -1,0 +1,28 @@
+
+- name: create patch directory
+  include_role:
+    name: pre-patching
+    tasks_from: Create_directory.yml
+  vars:
+    Stage_dir: "{{patch_Stage_dir}}"
+
+- name: Code to display Error handling
+  block : 
+
+    - name: List updated packages
+      ansible.builtin.shell:
+        cmd :  apt list --installed
+      register: store_update
+
+    - name : Display updated packages
+      copy :
+        content : "{{store_update.stdout}}"
+        dest : "{{Comman_path}}/{{patch_Stage_dir}}/updated_package.log"
+        
+  rescue:
+        - name: Not able to display updated packages
+          debug:
+            msg : "Failed to display updated packages"
+
+
+

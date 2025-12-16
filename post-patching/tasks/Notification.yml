@@ -1,0 +1,9 @@
+- name: Sending an e-mail using Gmail SMTP servers
+  community.general.mail:
+    host: Notification[host_name]
+    port: Notification[port_no]
+    username: Notification[user]
+    password: Notification[password]
+    to: Notification[detail]
+    subject: Notification[sub]
+  delegate_to: localhost

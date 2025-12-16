@@ -1,11 +1,14 @@
 
-- name: Check if the service is running
-  uri:
-    url: http://localhost:80
-    status_code: 200
-  register: health_check_result
+- name: Resources_health_check for ****** Post patching *******************
+  block:
+    - name: Resources_health_check
+      include_role: 
+        name: pre-patching
+        tasks_from: Verify_resources.yml
+  vars:
+    Stage_dir: "{{Stage_dir2}}"
 
-- name: Display health check result
-  debug:
-    msg: "Health check passed!"
-  when: health_check_result.status == 200
+  rescue:
+      - name: Print resue block
+        debug:
+          msg : "Failed Resource_Helth_Check"
