@@ -1,7 +1,5 @@
 - name: Service Revalidation 
   block:
-
-
   - name: create patch directory
     include_role:
       name: pre-patching
@@ -14,7 +12,6 @@
       name: pre-patching
       tasks_from: Gather_active_Service.yml
   vars:
-    Comman_path: "{{Comman_path}}"
     Stage_dir: "{{Stage_dir2}}"
 
   rescue:

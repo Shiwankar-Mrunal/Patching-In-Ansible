@@ -6,13 +6,7 @@
         state: stopped
       ignore_errors: true
       loop : "{{services_name}}"
-
-    - name : Stop Services
-      ansible.builtin.systemd:
-          name : "{{ item }}"
-          state: stopped
-      loop: "{{services_name}}"
-
+      
    rescue:
       - name: Restart service forcefully
         debug:
