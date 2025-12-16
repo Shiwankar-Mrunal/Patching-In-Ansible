@@ -1,39 +1,69 @@
 - name : Code with error handling
   block : 
-    - name : First file report generation
-      slurp: 
-        src : "{{Comman_path2}}/{{Stage_dir2}}/gather_active_services.log"
-      register : Post_Report
-
-
-    - name : To display running_services_info 
+    - name : copy file pre_patch
       copy:
-        content : "{{Post_Report['content'] | b64decode}}"
-        dest : "{{Comman_path2}}/{{Stage_dir2}}/Report_postpatch.txt"
+        src : "{{Comman_path}}/{{Stage_dir}}/gather_active_services.log"
+        dest : "{{Comman_path}}/{{Stage_dir2}}/Report_prepatch.txt"
 
+    - name : copy file post patch
+      copy:
+        src :  "{{Comman_path}}/{{Stage_dir2}}/gather_active_services.log"
+        dest :  "{{Comman_path}}/{{Stage_dir2}}/Report_postpatch.txt"
 
-    - name : Second file report generation
-      slurp : 
-        src : "{{Comman_path2}}/{{get_pre_patch_path}}/gather_active_services.log"
-      register : Pre_Report
-
-    - name : To display second file running_services_info
-      copy : 
-        content : "{{Pre_Report['content'] | b64decode}}"
-        dest : "{{Comman_path2}}/{{Stage_dir2}}/Report_prepatch.txt"
-
-    - name: Difference difference two file
-      ansible.builtin.command:
-        cmd: diff "{{Comman_path2}}/{{Stage_dir2}}/Report_postpatch.txt" "{{Comman_path2}}/{{Stage_dir2}}/Report_prepatch.txt"
+    - name : Difference between two file
+      shell : 
+        cmd : diff "{{Comman_path}}/{{Stage_dir2}}/Report_postpatch.txt" "{{Comman_path}}/{{Stage_dir2}}/Report_prepatch.txt"
       register : store_diff
-      changed_when: false
+      changed_when: true
       failed_when: store_diff.rc not in [0, 1]
 
+    
+    - name: Store Final report
+      ansible.builtin.copy:
+        content: "{{ store_diff.stdout | default('') }}"
+        dest: "{{ Comman_path }}/{{ Stage_dir2 }}/Final_Report.txt"
+        mode: '0644'
+
+
+
+
+
+
+
+    # - name : First file report generation
+    #   slurp: 
+    #     src : "{{Comman_path}}/{{Stage_dir2}}/gather_active_services.log"
+    #   register : Post_Report
+
+
+    # - name : To display running_services_info 
+    #   copy:
+    #     content : "{{Post_Report['content'] | b64decode}}"
+    #     dest : "{{Comman_path}}/{{Stage_dir2}}/Report_postpatch.txt"
+
+
+    # - name : Second file report generation
+    #   slurp : 
+    #     src : "{{Comman_path}}/{{Stage_dir2}}/gather_active_services.log"
+    #   register : Pre_Report
+
+    # - name : To display second file running_services_info
+    #   copy : 
+    #     content : "{{Pre_Report['content'] | b64decode}}"
+    #     dest : "{{Comman_path}}/{{Stage_dir2}}/Report_prepatch.txt"
+
+    # - name: Difference difference two file
+    #   ansible.builtin.command:
+    #     cmd: diff "{{Comman_path}}/{{Stage_dir2}}/Report_postpatch.txt" "{{Comman_path}}/{{Stage_dir2}}/Report_prepatch.txt"
+    #   register : store_diff
+    #   changed_when: false
+    #   failed_when: store_diff.rc not in [0, 1]
+
   
-    - name : Store Final report 
-      copy : 
-        content : store_diff.stdout
-        dest : "{{Comman_path2}}/{{Stage_dir2}}/Final_Report.txt"
+    # - name : Store Final report 
+    #   copy : 
+    #     content: "{{ store_diff.stdout | default('') }}"
+    #     dest : "{{Comman_path}}/{{Stage_dir2}}/Final_Report.txt"
 
   rescue:
       - name: Print resue block

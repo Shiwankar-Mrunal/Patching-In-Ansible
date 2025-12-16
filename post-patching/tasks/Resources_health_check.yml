@@ -6,7 +6,6 @@
         name: pre-patching
         tasks_from: Verify_resources.yml
   vars:
-    Comman_path: "{{Comman_path2}}"
     Stage_dir: "{{Stage_dir2}}"
 
   rescue:

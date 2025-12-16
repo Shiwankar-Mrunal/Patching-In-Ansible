@@ -8,9 +8,7 @@
     - name : To store running service in file
       ansible.builtin.copy:
         content : "{{my_var.stdout}}"
-        dest : "{{Comman_path}}/{{Stage_dir}}/gather_active_services.log"
-
-        
+        dest : "{{Comman_path}}/{{Stage_dir}}/gather_active_services.log"       
 
   rescue : 
     - name : Print resue block

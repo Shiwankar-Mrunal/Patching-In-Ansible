@@ -4,7 +4,6 @@
     name: pre-patching
     tasks_from: Create_directory.yml
   vars:
-    Comman_path: "{{Comman_path1}}"
     Stage_dir: "{{patch_Stage_dir}}"
 
 - name: Code to display Error handling
@@ -18,65 +17,12 @@
     - name : Display updated packages
       copy :
         content : "{{store_update.stdout}}"
-        dest : "{{Comman_path1}}/{{patch_Stage_dir}}/updated_package.log"
-
+        dest : "{{Comman_path}}/{{patch_Stage_dir}}/updated_package.log"
+        
   rescue:
         - name: Not able to display updated packages
           debug:
             msg : "Failed to display updated packages"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# # Step 4 : Gather Evidences
-# - name: Code to display Error handling
-#   block : 
-
-#     - name: List upgradable packages
-#       ansible.builtin.shell:
-#         cmd : apt list --upgradable 
-#       register: apt_updates
-#       changed_when: false
-
-#     - name : To store upgrade package in file
-#       ansible.builtin.copy:
-#         content : "{{apt_updates.stdout}}"
-#         dest : "{{pre_patch_var}}//gather_evidences.log"
-
-#   rescue : 
-#     - name : print rescue block 
-#       debug : 
-#         msg : "Failed to gather Facts"
 
 

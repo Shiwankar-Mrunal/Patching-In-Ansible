@@ -1,6 +1,4 @@
 ---
 
-Comman_path2 : "/root/Ansible_patching"
 Stage_dir2 : "Post_patch"
-
 get_pre_patch_path : "Pre_patch"
