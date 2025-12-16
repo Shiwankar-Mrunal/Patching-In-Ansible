@@ -15,106 +15,14 @@
             -o Dir::Etc::sourceparts="-" 
             -o APT::Get::List-Cleanup="0"
 
-
     - name: Update all packages
       ansible.builtin.dnf:
         name: "*"
         state: latest
         security: yes
       when: ansible_facts['os_family'] == "RedHat"
-
+      
   rescue:
     - name: Not able to updated packages
       debug:
         msg : "Failed to updated packages" 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#  - name: Reboot machine
-#       ansible.builtin.reboot:
-#         reboot_timeout: 1
-#       when : reboot_required.stat.exists | default(false)
-
-
