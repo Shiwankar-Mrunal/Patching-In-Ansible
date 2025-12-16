@@ -1,4 +1,2 @@
 ---
-# defaults file for patching
-Comman_path1 : "/root/Ansible_patching"
 patch_Stage_dir : "Patch"

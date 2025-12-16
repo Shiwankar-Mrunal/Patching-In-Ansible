@@ -3,10 +3,15 @@
     - name : Restart Services
       ansible.builtin.systemd:
         name : "{{ item }}"
-        state: restarted
+        state: stopped
       ignore_errors: true
-      # register: "stop_service_variable"
       loop : "{{services_name}}"
+
+    - name : Stop Services
+      ansible.builtin.systemd:
+          name : "{{ item }}"
+          state: stopped
+      loop: "{{services_name}}"
 
    rescue:
       - name: Restart service forcefully

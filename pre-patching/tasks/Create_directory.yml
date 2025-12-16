@@ -1,5 +1,10 @@
 - name : Code with error handling
   block : 
+
+    - name : Set a simple Facts
+      ansible.builtin.set_fact:
+        Comman_path : "{{Universal_path}}"
+
     - name : Create  Directory
       ansible.builtin.file:
         path : "{{Comman_path}}/{{Stage_dir}}"

@@ -2,8 +2,8 @@
   block : 
   - name : Convert folder into zip
     ansible.builtin.archive:
-      path: "{{Comman_path2}}"
-      dest: "{{Comman_path2}}patch.zip"  
+      path: "{{Comman_path}}"
+      dest: "{{Comman_path}}patch.zip"  
       format: zip
       owner: root
       group: root
@@ -14,7 +14,7 @@
   - name : Delete file in folder after converting folder into zip
     ansible.builtin.file: 
       state: absent 
-      path: "{{Comman_path2}}"
+      path: "{{Comman_path}}"
 
   rescue:
       - name: Print resue block

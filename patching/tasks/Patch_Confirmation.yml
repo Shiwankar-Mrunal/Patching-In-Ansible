@@ -4,7 +4,6 @@
     name: pre-patching
     tasks_from: Create_directory.yml
   vars:
-    Comman_path: "{{Comman_path1}}"
     Stage_dir: "{{patch_Stage_dir}}"
 
 - name: Code to display Error handling
@@ -18,10 +17,8 @@
     - name : Display updated packages
       copy :
         content : "{{store_update.stdout}}"
-        dest : "{{Comman_path1}}/{{patch_Stage_dir}}/updated_package.log"
-
-# for redhat
-
+        dest : "{{Comman_path}}/{{patch_Stage_dir}}/updated_package.log"
+        
   rescue:
         - name: Not able to display updated packages
           debug:
