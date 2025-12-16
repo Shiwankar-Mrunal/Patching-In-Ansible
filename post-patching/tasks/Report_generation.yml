@@ -28,14 +28,3 @@
       - name: Print resue block
         debug:
           msg : "Failed to create final report"
-
-
-
-
-
-
-
-
-
-
-  
